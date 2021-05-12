@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MvcCoreDynamoDBExamen.Models
 {
-    [DynamoDBTable("usuarios")]
+    [DynamoDBTable("usuario")]
     public class Usuario
     {
         [DynamoDBProperty("idusuario")]
@@ -21,5 +21,8 @@ namespace MvcCoreDynamoDBExamen.Models
 
         [DynamoDBProperty("fechaalta")]
         public String FechaAlta { get; set; }
+
+        [DynamoDBProperty("Fotos")]
+        public List<Fotos> Fotos { get; set; }
     }
 }

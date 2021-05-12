@@ -39,11 +39,14 @@ namespace MvcCoreDynamoDBExamen.Services
             return await this.context.LoadAsync<Usuario>(idusuario);
         }
 
-        public async Task ModifyUsuario(Usuario usuario)
+        public async Task Edit(Usuario usuario)
         {
             Usuario user = await FindUser(usuario.IdUsuario);
+
             user.Nombre = usuario.Nombre;
             user.Descripcion = usuario.Descripcion;
+            user.Fotos = usuario.Fotos;
+            user.FechaAlta = DateTime.Now.ToShortDateString();
 
             await this.context.SaveAsync<Usuario>(user);
         }

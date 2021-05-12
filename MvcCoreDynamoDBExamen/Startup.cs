@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Amazon.S3;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MvcCoreDynamoDBExamen.Helpers;
+using MvcCoreDynamoDBExamen.Services;
 
 namespace MvcCoreAWSBlank
 {
@@ -16,6 +19,15 @@ namespace MvcCoreAWSBlank
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //S3
+            services.AddAWSService<IAmazonS3>();
+            services.AddSingleton<PathProvider>();
+            services.AddSingleton<UploadHelper>();
+            services.AddTransient<ServiceAWSS3>();
+
+            //Dynamo
+            services.AddTransient<ServiceAWSDynamoDB>();
+    
             services.AddControllersWithViews();
         }
 
@@ -34,7 +46,7 @@ namespace MvcCoreAWSBlank
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                    pattern: "{controller=Usuario}/{action=Index}/{id?}"
                 );
             });
         }

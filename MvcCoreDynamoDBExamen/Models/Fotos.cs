@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace MvcCoreDynamoDBExamen.Models
 {
-    public class ImagenUsuario
+    public class Fotos
     {
-        [DynamoDBProperty("tiutlo")]
+        [DynamoDBProperty("titulo")]
         public String Titulo { get; set; }
         [DynamoDBProperty("imagen")]
-        public int Imagen { get; set; }
+        public String Imagen { get; set; }
 
     }
 }
